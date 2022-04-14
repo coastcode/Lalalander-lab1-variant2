@@ -1,30 +1,21 @@
-# GROUP-NAME - lab NUMBER - variant NUMBER
-
-This is an example project which demonstrates project structure and necessary
-CI checks. It is not the best structure for real-world projects, but good
-enough for educational purposes.
-
+# Lalalannder - lab 1 - variant 2
+  In this program,we use DynamicArray to perform different functions.
 ## Project structure
 
-- `foo.py` -- implementation of `Foo` class with `hello` and `add` features.
+- `dynamicarray.py` -- implementation of `DynamicArray` class.
    Stateless.
-- `foo_test.py` -- unit and PBT tests for `Foo`.
+- `dynamicarray_test.py` -- unit and PBT tests for `DynamicArray`.
 
 ## Features
 
-- PBT: `test_add_commutative`
-
 ## Contribution
 
-- Aleksandr Penskoi (EMAIL) -- all work.
+- Wu Chenyun (1329846782@qq.com) -- dynamicarray and test
+- Huang Yuting (hyut@hdu.edu.cn) -- dynamicarray and test
 
 ## Changelog
 
-- 29.03.2022 - 2
-  - Add test coverage.
-- 29.03.2022 - 1
-  - Update README. Add formal sections.
-- 29.03.2022 - 0
+- 14.04.2022 - 0
   - Initial
 
 ## Design notes
