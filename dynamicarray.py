@@ -148,7 +148,7 @@ class DynamicArray(object):
             for i in range(size):
                 self.A[i] = func(self.A[i])
 
-    # 8.Reduce, process structure elements to build a return value by specific functions
+    # 8.process elements to build a return value by specific functions
     def reduce(self, func, initial=None):
         """
         Process elements by a specific function
@@ -181,7 +181,6 @@ class DynamicArray(object):
     # 10.empty
     def empty(self):
         self.n = 0
-
 
     @staticmethod
     def _make_array(c):
