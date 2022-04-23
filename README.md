@@ -1,5 +1,6 @@
 
 # Lalalannder - lab 1 - variant 2
+
   In this program,we use DynamicArray to perform different functions.
 
 ## Project structure
@@ -9,6 +10,7 @@
 - `dynamicarray_test.py` -- unit and PBT tests for `DynamicArray`.
 
 ## Features
+
 ## Contribution
 
 - Wu Chenyun (1329846782@qq.com) -- dynamicarray and test
