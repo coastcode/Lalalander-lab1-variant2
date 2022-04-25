@@ -133,9 +133,10 @@ class TestDynamicArray(unittest.TestCase):
         c = d1.convert_to_list()
         self.assertEqual(b, c)
 
-    @given(a=st.lists(st.integers())
-        , b=st.lists(st.integers())
-        , c=st.lists(st.integers()))
+    @given(
+        a=st.lists(st.integers()),
+        b=st.lists(st.integers()),
+        c=st.lists(st.integers()))
     def test_monoid_concat(self, a, b, c):
         d1 = DynamicArray()
         d1.convert_from_list(a)
