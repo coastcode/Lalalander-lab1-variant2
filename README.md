@@ -13,7 +13,7 @@
 
 ## Contribution
 
-- Wu Chenyun (1329846782@qq.com) -- dynamicarray and test
+- Wu Chenyun (1329846782@qq.com) -- dynamicarray,test and modify
 - Huang Yuting (hyut@hdu.edu.cn) -- dynamicarray and test
 
 ## Changelog

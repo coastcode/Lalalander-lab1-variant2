@@ -2,6 +2,23 @@ import numpy as np
 import ctypes
 
 
+class Muliter():
+    def __init__(self, lis):
+        self.data = lis
+        self.offset = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.offset >= len(self.data):
+            raise StopIteration
+        else:
+            item = self.data[self.offset]
+            self.offset += 1
+            return item
+
+
 class DynamicArray(object):
     def __init__(self):
         self.index = 0
@@ -24,8 +41,6 @@ class DynamicArray(object):
     def __getitem__(self, idx):
         """
         Gets the element at idx
-        :param idx: index of an element
-        :return: corresponding element
         """
         if not 0 <= idx < self.n:  # idx is the array boundary
             raise ValueError("invalid index")
@@ -168,7 +183,7 @@ class DynamicArray(object):
 
     # 9.Iterator
     def __iter__(self):
-        return self
+        return Muliter(self.convert_to_list())
 
     def __next__(self):
         i = self.index
@@ -178,9 +193,13 @@ class DynamicArray(object):
         else:
             raise StopIteration
 
-    # 10.empty
+    # 10.empty and concat
     def empty(self):
         self.n = 0
+
+    def concat(self,dy):
+        for k in range(dy.n):
+            self.add(dy[k])
 
     @staticmethod
     def _make_array(c):

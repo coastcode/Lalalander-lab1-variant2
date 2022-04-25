@@ -1,5 +1,6 @@
 import unittest
-from hypothesis import given, strategies
+from hypothesis import given
+import hypothesis.strategies as st
 import numpy as np
 from dynamicarray import DynamicArray
 
@@ -96,6 +97,62 @@ class TestDynamicArray(unittest.TestCase):
         self.assertEqual(d, [2, 13, 4])
 
     def test_reduce(self):
+        # sum of empty list
+        demp = DynamicArray()
+        self.assertEqual(demp.reduce(lambda x, y: x + y, 0), 0)
+
+        # sum of list
         d = DynamicArray().convert_from_list([1, 12, 3])
         v = d.reduce(lambda x, y: x + y, 0)
         self.assertEqual(v, 16)
+
+    @given(st.lists(st.integers()))
+    def test_from_list_to_list_equality(self, a):
+        d = DynamicArray()
+        d.convert_from_list(a)
+        b = d.convert_to_list()
+        self.assertEqual(a, b)
+
+    @given(st.lists(st.integers()))
+    def test_python_len_and_list_size_equality(self, a):
+        # This will generate lists of arbitrary length
+        # usually 0~100 elements whose elements are integers.
+        d = DynamicArray()
+        d.convert_from_list(a)
+        self.assertEqual(d.size(), len(a))
+
+    @given(st.lists(st.integers()))
+    def test_monoid_concat_empty(self, a):
+        d = DynamicArray()
+        d.convert_from_list(a)
+        e = DynamicArray()
+        self.assertEqual(d.concat(e), d)
+
+    @given(a=st.lists(st.integers()), b=st.lists(st.integers()), c=st.lists(st.integers()))
+    def test_monoid_concat(self, a, b, c):
+        d1 = DynamicArray()
+        d1.convert_from_list(a)
+        d2 = DynamicArray()
+        d2.convert_from_list(b)
+        d3 = DynamicArray()
+        d3.convert_from_list(c)
+        d12 = DynamicArray()
+        d12.convert_from_list(a)
+        d1.concat(d2)
+        d1.concat(d3)
+        d12.concat(d3)
+        d12.concat(d2)
+        self.assertEqual(d1, d12)
+
+    def test_iter(self):
+        x = [1, 2, 3]
+        d = DynamicArray()
+        d.convert_from_list(x)
+        tmp = []
+        for e in d:
+            tmp.append(e)
+        self.assertEqual(x, tmp)
+        self.assertEqual(d.convert_to_list(), tmp)
+
+        i = iter(DynamicArray())
+        self.assertRaises(StopIteration, lambda: next(i))
