@@ -183,7 +183,7 @@ class DynamicArray(object):
 
     # 9.Iterator
     def __iter__(self):
-        return Muliter(self.convert_to_list())
+        return Muliter(self)
 
     def __next__(self):
         i = self.index
