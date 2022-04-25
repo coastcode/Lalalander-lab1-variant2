@@ -137,7 +137,10 @@ class DynamicArray(object):
         B = self._make_array(c)
         for k in range(c):  # reference all existing values
             B[k] = list_variable[k]
-        self.capacity = c
+        if c==0:
+            self.capacity = 1
+        else:
+            self.capacity = c
         self.A = B
         self.n = c  # reset the capacity
         return self
