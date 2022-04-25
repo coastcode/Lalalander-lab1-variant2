@@ -134,7 +134,7 @@ class DynamicArray(object):
 
     def convert_from_list(self, list_variable):
         c = len(list_variable)
-        if c==0:
+        if c == 0:
             c = 1
         B = self._make_array(c)
         for k in range(len(list_variable)):
@@ -200,7 +200,7 @@ class DynamicArray(object):
         self.n = 0
         return self
 
-    def concat(self,dy):
+    def concat(self, dy):
         for k in range(dy.n):
             self.add(dy[k])
         return self
