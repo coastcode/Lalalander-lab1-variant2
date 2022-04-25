@@ -134,15 +134,14 @@ class DynamicArray(object):
 
     def convert_from_list(self, list_variable):
         c = len(list_variable)
-        B = self._make_array(c)
-        for k in range(c):  # reference all existing values
-            B[k] = list_variable[k]
         if c==0:
-            self.capacity = 1
-        else:
-            self.capacity = c
+            c = 1
+        B = self._make_array(c)
+        for k in range(len(list_variable)):
+            B[k] = list_variable[k]
+        self.capacity = c
         self.A = B
-        self.n = c  # reset the capacity
+        self.n = len(list_variable)
         return self
 
     # 6.Filter data structure by specific predicate
@@ -199,10 +198,12 @@ class DynamicArray(object):
     # 10.empty and concat
     def empty(self):
         self.n = 0
+        return self
 
     def concat(self,dy):
         for k in range(dy.n):
             self.add(dy[k])
+        return self
 
     @staticmethod
     def _make_array(c):
