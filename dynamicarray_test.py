@@ -145,7 +145,7 @@ class TestDynamicArray(unittest.TestCase):
         d12.convert_from_list(a)
         d1.concat(d2)
         d1.concat(d3)
-        d12.concat(d3)
+        d2.concat(d3)
         d12.concat(d2)
         b = d1.convert_to_list()
         c = d12.convert_to_list()
