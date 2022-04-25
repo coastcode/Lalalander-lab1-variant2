@@ -125,8 +125,13 @@ class TestDynamicArray(unittest.TestCase):
     def test_monoid_concat_empty(self, a):
         d = DynamicArray()
         d.convert_from_list(a)
+        d1 = DynamicArray()
+        d1.convert_from_list(a)
         e = DynamicArray()
-        self.assertEqual(d.concat(e), d)
+        d.concat(e)
+        b = d.convert_to_list()
+        c = d1.convert_to_list()
+        self.assertEqual(b, c)
 
     @given(a=st.lists(st.integers()), b=st.lists(st.integers()), c=st.lists(st.integers()))
     def test_monoid_concat(self, a, b, c):
@@ -142,7 +147,9 @@ class TestDynamicArray(unittest.TestCase):
         d1.concat(d3)
         d12.concat(d3)
         d12.concat(d2)
-        self.assertEqual(d1, d12)
+        b = d1.convert_to_list()
+        c = d12.convert_to_list()
+        self.assertEqual(b, c)
 
     def test_iter(self):
         x = [1, 2, 3]
