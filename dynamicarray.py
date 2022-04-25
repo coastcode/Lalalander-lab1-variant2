@@ -1,8 +1,7 @@
-import numpy as np
 import ctypes
 
 
-class Muliter():
+class Muliter(object):
     def __init__(self, lis):
         self.data = lis
         self.offset = 0

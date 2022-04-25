@@ -1,7 +1,6 @@
 import unittest
 from hypothesis import given
 import hypothesis.strategies as st
-import numpy as np
 from dynamicarray import DynamicArray
 
 
