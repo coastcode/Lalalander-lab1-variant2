@@ -59,7 +59,7 @@ class DynamicArray(object):
         self.capacity = c  # reset the capacity
 
     # 1.Add a new element
-    def add(self, elem: any) -> None:
+    def add(self, elem: Any) -> None:
         if self.n == self.capacity:  # no enough room
             self._resize(2 * self.capacity)
         self.A[self.n] = elem  # add elem to the position of n
@@ -146,7 +146,7 @@ class DynamicArray(object):
         return self
 
     # 6.Filter data structure by specific predicate
-    def filter(self, predicate: Optional[Callable[..., bool]] = None) -> None:
+    def filter(self, predicate: Optional[Callable[..., bool]]) -> None:
         i = 0
         while i < self.n:
             if not predicate(self.A[i]):
@@ -155,7 +155,7 @@ class DynamicArray(object):
                 i += 1
 
     # 7.Map structure by specific function
-    def map(self, func: Optional[Callable[..., Any]] = None) -> None:
+    def map(self, func: Optional[Callable[..., Any]]) -> None:
         """
         Apply the func into the object
         :param func: specific function
@@ -167,7 +167,7 @@ class DynamicArray(object):
                 self.A[i] = func(self.A[i])
 
     # 8.process elements to build a return value by specific functions
-    def reduce(self, func: Optional[Callable[..., Any]] = None, initial=None):
+    def reduce(self, func: Optional[Callable[..., Any]], initial=None):
         """
         Process elements by a specific function
         :param func: specified function
