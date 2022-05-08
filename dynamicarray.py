@@ -146,7 +146,9 @@ class DynamicArray(object):
         return self
 
     # 6.Filter data structure by specific predicate
-    def filter(self, predicate: Optional[Callable[..., bool]]) -> None:
+    def filter(self, predicate: Optional[Callable[..., bool]] = None) -> None:
+        if (self.n == 0) or predicate is None:
+            return
         i = 0
         while i < self.n:
             if not predicate(self.A[i]):
@@ -155,12 +157,14 @@ class DynamicArray(object):
                 i += 1
 
     # 7.Map structure by specific function
-    def map(self, func: Optional[Callable[..., Any]]) -> None:
+    def map(self, func: Optional[Callable[..., Any]] = None) -> None:
         """
         Apply the func into the object
         :param func: specific function
         :return: result that applied function
         """
+        if func is None:
+            return
         size = self.__len__()
         if size != 0:
             for i in range(size):
@@ -174,6 +178,8 @@ class DynamicArray(object):
         :param initial: initial state
         :return: the result of processed
         """
+        if func is None:
+            return
         if initial is None:
             return self.A[0]
         else:
