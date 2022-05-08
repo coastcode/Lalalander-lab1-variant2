@@ -2,6 +2,7 @@ import ctypes
 from typing import Optional, Any
 from collections.abc import Callable
 
+
 class Muliter(object):
     def __init__(self, lis):
         self.data = lis
@@ -132,7 +133,7 @@ class DynamicArray(object):
             list_A.append(self.A[i])
         return list_A
 
-    def convert_from_list(self, list_variable :list):
+    def convert_from_list(self, list_variable: list):
         c = len(list_variable)
         if c == 0:
             c = 1
