@@ -22,6 +22,9 @@ class Muliter(object):
 
 class DynamicArray(object):
     def __init__(self):
+        """
+        Initialize a DynamicArray
+        """
         self.index = 0
         self.n = 0  # the number of elements now
         self.capacity = 1  # how many elements it can contain
@@ -60,6 +63,10 @@ class DynamicArray(object):
 
     # 1.Add a new element
     def add(self, elem: Any) -> None:
+        """
+        Add an element to existing array
+        :param elem: the element to add
+        """
         if self.n == self.capacity:  # no enough room
             self._resize(2 * self.capacity)
         self.A[self.n] = elem  # add elem to the position of n
@@ -88,6 +95,10 @@ class DynamicArray(object):
         self.n -= 1
 
     def remove_by_value(self, value):
+        """
+        Removes the element of specified value
+        :param value: the value of element to be removed
+        """
         for k in range(self.n):
             if self.A[k] == value:
                 for j in range(k, self.n - 1):
@@ -134,6 +145,11 @@ class DynamicArray(object):
         return list_A
 
     def convert_from_list(self, list_variable: list):
+        """
+        Convert a list to dynamicarray
+        :param list_variable: the list to convert
+        :return: result dynamicarray
+        """
         c = len(list_variable)
         if c == 0:
             c = 1
@@ -147,6 +163,10 @@ class DynamicArray(object):
 
     # 6.Filter data structure by specific predicate
     def filter(self, predicate: Optional[Callable[..., bool]] = None) -> None:
+        """
+        Filter data structure by specific predicate
+        :param predicate: specific filter function
+        """
         if (self.n == 0) or predicate is None:
             return
         i = 0
