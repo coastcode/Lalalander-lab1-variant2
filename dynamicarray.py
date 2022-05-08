@@ -1,5 +1,6 @@
 import ctypes
-
+from typing import Optional, Any
+from collections.abc import Callable
 
 class Muliter(object):
     def __init__(self, lis):
@@ -25,19 +26,19 @@ class DynamicArray(object):
         self.capacity = 1  # how many elements it can contain
         self.A = self._make_array(self.capacity)  # a low level array
 
-    def is_empty(self):
+    def is_empty(self) -> bool:
         """
         :return: true if array is empty, otherwise false
         """
         return self.n == 0
 
-    def __len__(self):
+    def __len__(self) -> int:
         """
         Gets the length of the current array
         """
         return self.n
 
-    def __getitem__(self, idx):
+    def __getitem__(self, idx: int):
         """
         Gets the element at idx
         """
@@ -45,7 +46,7 @@ class DynamicArray(object):
             raise ValueError("invalid index")
         return self.A[idx]
 
-    def _resize(self, c):
+    def _resize(self, c: int) -> None:
         """
         Resize the capacity of array
         :param c: specific value of capacity
@@ -57,14 +58,14 @@ class DynamicArray(object):
         self.capacity = c  # reset the capacity
 
     # 1.Add a new element
-    def add(self, elem):
+    def add(self, elem: any) -> None:
         if self.n == self.capacity:  # no enough room
             self._resize(2 * self.capacity)
         self.A[self.n] = elem  # add elem to the position of n
         self.n += 1
 
     # 2.Set an element with specific index / key
-    def set(self, idx, elem):
+    def set(self, idx: int, elem) -> None:
         """
         Replace some element at idx with elem.
         """
@@ -73,7 +74,7 @@ class DynamicArray(object):
         self.A[idx] = elem
 
     # 3.Remove an element
-    def remove_by_index(self, idx):
+    def remove_by_index(self, idx: int) -> None:
         """
         Removes the element at the specified index position
         :param idx: specified index
@@ -96,14 +97,14 @@ class DynamicArray(object):
         raise ValueError("value not found")
 
     # 4.Access
-    def size(self):
+    def size(self) -> int:
         """
         Get the size of array
         :return: the value of size
         """
         return self.__len__()
 
-    def member(self, elem):
+    def member(self, elem) -> bool:
         """
         Check whether the given element is a member of the array
         :param elem: specified value
@@ -114,14 +115,14 @@ class DynamicArray(object):
                 return True
         return False
 
-    def reverse(self):
+    def reverse(self) -> None:
         B = self._make_array(self.capacity)
         for k in range(self.n):
             B[k] = self.A[self.n - 1 - k]
         self.A = B
 
     # 5.Conversion from/to built-in list
-    def convert_to_list(self):
+    def convert_to_list(self) -> list:
         """
         Convert an array to a list
         :return: converted list
@@ -131,7 +132,7 @@ class DynamicArray(object):
             list_A.append(self.A[i])
         return list_A
 
-    def convert_from_list(self, list_variable):
+    def convert_from_list(self, list_variable :list):
         c = len(list_variable)
         if c == 0:
             c = 1
@@ -144,7 +145,7 @@ class DynamicArray(object):
         return self
 
     # 6.Filter data structure by specific predicate
-    def filter(self, predicate):
+    def filter(self, predicate: Optional[Callable[..., bool]] = None) -> None:
         i = 0
         while i < self.n:
             if not predicate(self.A[i]):
@@ -153,7 +154,7 @@ class DynamicArray(object):
                 i += 1
 
     # 7.Map structure by specific function
-    def map(self, func):
+    def map(self, func: Optional[Callable[..., Any]] = None) -> None:
         """
         Apply the func into the object
         :param func: specific function
@@ -165,7 +166,7 @@ class DynamicArray(object):
                 self.A[i] = func(self.A[i])
 
     # 8.process elements to build a return value by specific functions
-    def reduce(self, func, initial=None):
+    def reduce(self, func: Optional[Callable[..., Any]] = None, initial=None):
         """
         Process elements by a specific function
         :param func: specified function
@@ -184,28 +185,32 @@ class DynamicArray(object):
 
     # 9.Iterator
     def __iter__(self):
+        """
+        Get an iterator
+        :return: an object of class Muliter
+        """
         return Muliter(self)
 
-    def __next__(self):
-        i = self.index
-        if i < self.n:
-            self.index = i + 1
-            return self.A[i]
-        else:
-            raise StopIteration
-
-    # 10.empty and concat
     def empty(self):
+        """
+        empty item in dynamicarray
+        :return: an empty dynamicarray
+        """
         self.n = 0
         return self
 
     def concat(self, dy):
+        """
+        concat dynamicarray A and B
+        :param dy: dynamicarray B
+        :return: result of concated array
+        """
         for k in range(dy.n):
             self.add(dy[k])
         return self
 
     @staticmethod
-    def _make_array(c):
+    def _make_array(c: int):
         """
         Create a new array of capacity c
         :param c: the capacity of array
@@ -213,7 +218,7 @@ class DynamicArray(object):
         """
         return (c * ctypes.py_object)()
 
-    def insert(self, k, value):
+    def insert(self, k: int, value) -> None:
         """
         Insert a new element into array at position k
         :param k: insertion position
@@ -226,7 +231,7 @@ class DynamicArray(object):
         self.A[k] = value
         self.n += 1
 
-    def _print(self):
+    def _print(self) -> None:
         for i in range(self.n):
             print(self.A[i], end=' ')
         print()
