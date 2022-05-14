@@ -2,6 +2,7 @@ import unittest
 from hypothesis import given
 import hypothesis.strategies as st
 from dynamicarray import DynamicArray
+from typing import Any, List
 
 
 class TestDynamicArray(unittest.TestCase):
@@ -106,14 +107,14 @@ class TestDynamicArray(unittest.TestCase):
         self.assertEqual(v, 16)
 
     @given(st.lists(st.integers()))
-    def test_from_list_to_list_equality(self, a) -> None:
+    def test_from_list_to_list_equality(self, a: List[Any]) -> None:
         d = DynamicArray()
         d.convert_from_list(a)
         b = d.convert_to_list()
         self.assertEqual(a, b)
 
     @given(st.lists(st.integers()))
-    def test_python_len_and_list_size_equality(self, a) -> None:
+    def test_python_len_and_list_size_equality(self, a: List[Any]) -> None:
         # This will generate lists of arbitrary length
         # usually 0~100 elements whose elements are integers.
         d = DynamicArray()
@@ -121,7 +122,7 @@ class TestDynamicArray(unittest.TestCase):
         self.assertEqual(d.size(), len(a))
 
     @given(st.lists(st.integers()))
-    def test_monoid_concat_empty(self, a) -> None:
+    def test_monoid_concat_empty(self, a: List[Any]) -> None:
         d = DynamicArray()
         d.convert_from_list(a)
         d1 = DynamicArray()
@@ -136,7 +137,7 @@ class TestDynamicArray(unittest.TestCase):
         a=st.lists(st.integers()),
         b=st.lists(st.integers()),
         c=st.lists(st.integers()))
-    def test_monoid_concat(self, a, b, c) -> None:
+    def test_mon_con(self, a: List[Any], b: List[Any], c: List[Any]) -> None:
         d1 = DynamicArray()
         d1.convert_from_list(a)
         d2 = DynamicArray()
