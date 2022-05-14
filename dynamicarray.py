@@ -1,4 +1,5 @@
 import ctypes
+import typing
 from typing import Optional, Any
 from collections.abc import Callable
 
@@ -94,7 +95,7 @@ class DynamicArray(object):
         self.A[self.n - 1] = None
         self.n -= 1
 
-    def remove_by_value(self, value: Any):
+    def remove_by_value(self, value: Any) -> Any:
         """
         Removes the element of specified value
         :param value: the value of element to be removed
@@ -134,7 +135,7 @@ class DynamicArray(object):
         self.A = B
 
     # 5.Conversion from/to built-in list
-    def convert_to_list(self) -> list:
+    def convert_to_list(self) -> typing.List[Any]:
         """
         Convert an array to a list
         :return: converted list
@@ -144,7 +145,7 @@ class DynamicArray(object):
             list_A.append(self.A[i])
         return list_A
 
-    def convert_from_list(self, list_variable: list):
+    def convert_from_list(self, list_variable: list) -> Any:
         """
         Convert a list to dynamicarray
         :param list_variable: the list to convert
