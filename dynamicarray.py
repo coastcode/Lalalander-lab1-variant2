@@ -192,7 +192,7 @@ class DynamicArray(object):
                 self.A[i] = func(self.A[i])
 
     # 8.process elements to build a return value by specific functions
-    def reduce(self, func: Optional[Callable[..., Any]], initial=None):
+    def reduce(self, func: Optional[Callable[..., Any]], initial: Any = None) -> Any:
         """
         Process elements by a specific function
         :param func: specified function
@@ -212,14 +212,14 @@ class DynamicArray(object):
         return value
 
     # 9.Iterator
-    def __iter__(self):
+    def __iter__(self) -> Any:
         """
         Get an iterator
         :return: an object of class Muliter
         """
         return Muliter(self)
 
-    def empty(self):
+    def empty(self) -> Any:
         """
         empty item in dynamicarray
         :return: an empty dynamicarray
@@ -227,7 +227,7 @@ class DynamicArray(object):
         self.n = 0
         return self
 
-    def concat(self, dy):
+    def concat(self, dy) -> Any:
         """
         concat dynamicarray A and B
         :param dy: dynamicarray B
@@ -238,7 +238,7 @@ class DynamicArray(object):
         return self
 
     @staticmethod
-    def _make_array(c: int):
+    def _make_array(c: int) -> Any:
         """
         Create a new array of capacity c
         :param c: the capacity of array
@@ -246,7 +246,7 @@ class DynamicArray(object):
         """
         return (c * ctypes.py_object)()
 
-    def insert(self, k: int, value) -> None:
+    def insert(self, k: int, value: Any) -> None:
         """
         Insert a new element into array at position k
         :param k: insertion position
