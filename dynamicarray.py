@@ -4,11 +4,11 @@ from collections.abc import Callable
 
 
 class Muliter(object):
-    def __init__(self, lis):
+    def __init__(self, lis) -> None:
         self.data = lis
         self.offset = 0
 
-    def __iter__(self):
+    def __iter__(self) -> None:
         return self
 
     def __next__(self):
@@ -21,7 +21,7 @@ class Muliter(object):
 
 
 class DynamicArray(object):
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Initialize a DynamicArray
         """
@@ -42,7 +42,7 @@ class DynamicArray(object):
         """
         return self.n
 
-    def __getitem__(self, idx: int):
+    def __getitem__(self, idx: int) -> Any:
         """
         Gets the element at idx
         """
