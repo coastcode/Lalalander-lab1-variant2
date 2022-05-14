@@ -27,75 +27,75 @@ class TestDynamicArray(unittest.TestCase):
         dl = d.convert_to_list()
         self.assertEqual(dl, [55, 2])
 
-    def test_remove_by_index(self):
+    def test_remove_by_index(self) -> None:
         d = DynamicArray()
         d.add(55)
         d.add(15)
         d.remove_by_index(0)
-        d = d.convert_to_list()
-        self.assertEqual(d, [15])
+        dl = d.convert_to_list()
+        self.assertEqual(dl, [15])
 
-    def test_remove_by_value(self):
+    def test_remove_by_value(self) -> None:
         d = DynamicArray()
         d.add(55)
         d.add(15)
         d.remove_by_value(55)
-        d = d.convert_to_list()
-        self.assertEqual(d, [15])
+        dl = d.convert_to_list()
+        self.assertEqual(dl, [15])
 
-    def test_resize(self):
+    def test_resize(self) -> None:
         d = DynamicArray()
         d._resize(5)
         self.assertEqual(d.capacity, 5)
 
-    def test_size(self):
+    def test_size(self) -> None:
         d = DynamicArray()
         d.add(55)
         d.add(15)
         self.assertEqual(d.size(), 2)
 
-    def test_is_empty(self):
+    def test_is_empty(self) -> None:
         d = DynamicArray()
         d.add(55)
         d.add(15)
         d.empty()
         self.assertEqual(d.is_empty(), True)
 
-    def test_member(self):
+    def test_member(self) -> None:
         d = DynamicArray()
         d.add(55)
         d.add(15)
         self.assertEqual(d.member(15), True)
 
-    def test_reverse(self):
+    def test_reverse(self) -> None:
         d = DynamicArray()
         d.add(55)
         d.add(15)
         d.add(2)
         d.add(8)
         d.reverse()
-        d = d.convert_to_list()
-        self.assertEqual(d, [8, 2, 15, 55])
+        dl = d.convert_to_list()
+        self.assertEqual(dl, [8, 2, 15, 55])
 
-    def test_convert_from_list(self):
+    def test_convert_from_list(self) -> None:
         d = DynamicArray().convert_from_list([1, 1, 33])
         d.add(2)
-        d = d.convert_to_list()
-        self.assertEqual(d, [1, 1, 33, 2])
+        dl = d.convert_to_list()
+        self.assertEqual(dl, [1, 1, 33, 2])
 
-    def test_filter(self):
+    def test_filter(self) -> None:
         d = DynamicArray().convert_from_list([1, 12, 3, 98, 5])
         d.filter(lambda x: x % 2 != 0)
-        d = d.convert_to_list()
-        self.assertEqual(d, [1, 3, 5])
+        dl = d.convert_to_list()
+        self.assertEqual(dl, [1, 3, 5])
 
-    def test_map(self):
+    def test_map(self) -> None:
         d = DynamicArray().convert_from_list([1, 12, 3])
         d.map(lambda x: x + 1)
-        d = d.convert_to_list()
-        self.assertEqual(d, [2, 13, 4])
+        dl = d.convert_to_list()
+        self.assertEqual(dl, [2, 13, 4])
 
-    def test_reduce(self):
+    def test_reduce(self) -> None:
         # sum of empty list
         demp = DynamicArray()
         self.assertEqual(demp.reduce(lambda x, y: x + y, 0), 0)
@@ -106,14 +106,14 @@ class TestDynamicArray(unittest.TestCase):
         self.assertEqual(v, 16)
 
     @given(st.lists(st.integers()))
-    def test_from_list_to_list_equality(self, a):
+    def test_from_list_to_list_equality(self, a) -> None:
         d = DynamicArray()
         d.convert_from_list(a)
         b = d.convert_to_list()
         self.assertEqual(a, b)
 
     @given(st.lists(st.integers()))
-    def test_python_len_and_list_size_equality(self, a):
+    def test_python_len_and_list_size_equality(self, a) -> None:
         # This will generate lists of arbitrary length
         # usually 0~100 elements whose elements are integers.
         d = DynamicArray()
@@ -121,7 +121,7 @@ class TestDynamicArray(unittest.TestCase):
         self.assertEqual(d.size(), len(a))
 
     @given(st.lists(st.integers()))
-    def test_monoid_concat_empty(self, a):
+    def test_monoid_concat_empty(self, a) -> None:
         d = DynamicArray()
         d.convert_from_list(a)
         d1 = DynamicArray()
@@ -136,7 +136,7 @@ class TestDynamicArray(unittest.TestCase):
         a=st.lists(st.integers()),
         b=st.lists(st.integers()),
         c=st.lists(st.integers()))
-    def test_monoid_concat(self, a, b, c):
+    def test_monoid_concat(self, a, b, c) -> None:
         d1 = DynamicArray()
         d1.convert_from_list(a)
         d2 = DynamicArray()
@@ -153,7 +153,7 @@ class TestDynamicArray(unittest.TestCase):
         c = d12.convert_to_list()
         self.assertEqual(b, c)
 
-    def test_iter(self):
+    def test_iter(self) -> None:
         x = [1, 2, 3]
         d = DynamicArray()
         d.convert_from_list(x)
