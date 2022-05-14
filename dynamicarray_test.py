@@ -6,26 +6,26 @@ from dynamicarray import DynamicArray
 
 class TestDynamicArray(unittest.TestCase):
 
-    def test_singleton(self):
+    def test_singleton(self) -> None:
         d = DynamicArray()
         d.add(55)
-        d = d.convert_to_list()
-        self.assertEqual(d, [55])
+        dl = d.convert_to_list()
+        self.assertEqual(dl, [55])
 
-    def test_add(self):
+    def test_add(self) -> None:
         d = DynamicArray()
         d.add(55)
         d.add(15)
-        d = d.convert_to_list()
-        self.assertEqual(d, [55, 15])
+        dl = d.convert_to_list()
+        self.assertEqual(dl, [55, 15])
 
-    def test_set(self):
+    def test_set(self) -> None:
         d = DynamicArray()
         d.add(55)
         d.add(15)
         d.set(1, 2)
-        d = d.convert_to_list()
-        self.assertEqual(d, [55, 2])
+        dl = d.convert_to_list()
+        self.assertEqual(dl, [55, 2])
 
     def test_remove_by_index(self):
         d = DynamicArray()
