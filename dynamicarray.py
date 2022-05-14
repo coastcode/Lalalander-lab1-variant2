@@ -227,7 +227,7 @@ class DynamicArray(object):
         self.n = 0
         return self
 
-    def concat(self, dy) -> Any:
+    def concat(self, dy: typing.List[Any]) -> Any:
         """
         concat dynamicarray A and B
         :param dy: dynamicarray B
