@@ -145,7 +145,7 @@ class DynamicArray(object):
             list_A.append(self.A[i])
         return list_A
 
-    def convert_from_list(self, list_variable: list) -> Any:
+    def convert_from_list(self, list_variable: typing.List[Any]) -> Any:
         """
         Convert a list to dynamicarray
         :param list_variable: the list to convert
