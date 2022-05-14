@@ -4,14 +4,14 @@ from collections.abc import Callable
 
 
 class Muliter(object):
-    def __init__(self, lis) -> None:
+    def __init__(self, lis: object):
         self.data = lis
         self.offset = 0
 
-    def __iter__(self) -> None:
+    def __iter__(self) -> object:
         return self
 
-    def __next__(self):
+    def __next__(self) -> Any:
         if self.offset >= len(self.data):
             raise StopIteration
         else:
@@ -73,7 +73,7 @@ class DynamicArray(object):
         self.n += 1
 
     # 2.Set an element with specific index / key
-    def set(self, idx: int, elem) -> None:
+    def set(self, idx: int, elem: Any) -> None:
         """
         Replace some element at idx with elem.
         """
@@ -94,7 +94,7 @@ class DynamicArray(object):
         self.A[self.n - 1] = None
         self.n -= 1
 
-    def remove_by_value(self, value):
+    def remove_by_value(self, value: Any):
         """
         Removes the element of specified value
         :param value: the value of element to be removed
@@ -116,7 +116,7 @@ class DynamicArray(object):
         """
         return self.__len__()
 
-    def member(self, elem) -> bool:
+    def member(self, elem: Any) -> bool:
         """
         Check whether the given element is a member of the array
         :param elem: specified value
