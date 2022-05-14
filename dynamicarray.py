@@ -192,23 +192,23 @@ class DynamicArray(object):
                 self.A[i] = func(self.A[i])
 
     # 8.process elements to build a return value by specific functions
-    def reduce(self, func: Optional[Callable[..., Any]], initial: Any = None) -> Any:
+    def reduce(self, fu: Optional[Callable[..., Any]], ini: Any = None) -> Any:
         """
         Process elements by a specific function
-        :param func: specified function
-        :param initial: initial state
+        :param fu: specified function
+        :param ini: initial state
         :return: the result of processed
         """
-        if func is None:
+        if fu is None:
             return
-        if initial is None:
+        if ini is None:
             return self.A[0]
         else:
-            value = initial
+            value = ini
         size = self.__len__()
         if size != 0:
             for i in range(size):
-                value = func(value, self.A[i])
+                value = fu(value, self.A[i])
         return value
 
     # 9.Iterator
