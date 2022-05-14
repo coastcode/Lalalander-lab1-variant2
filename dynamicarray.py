@@ -8,7 +8,7 @@ class Muliter(object):
         self.data = lis
         self.offset = 0
 
-    def __iter__(self) -> None:
+    def __iter__(self) -> Muliter:
         return self
 
     def __next__(self):
