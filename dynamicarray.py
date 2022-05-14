@@ -4,11 +4,11 @@ from collections.abc import Callable
 
 
 class Muliter(object):
-    def __init__(self, lis: object):
+    def __init__(self, lis: Any):
         self.data = lis
         self.offset = 0
 
-    def __iter__(self) -> object:
+    def __iter__(self) -> Any:
         return self
 
     def __next__(self) -> Any:
